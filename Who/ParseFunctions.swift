@@ -20,3 +20,22 @@ func parseLoginUser(userName:String, didLogin:(Bool)->Void) {
         didLogin(user != nil ? true : false)
     }
 }
+
+func parseUsersMatchingUserIDs(userIDs:[String], complete: (users: [User], error: NSError?)->Void) {
+    var queries : [PFQuery] = []
+
+    for id in userIDs {
+        let query = User.query()
+        query?.whereKey("fbID", equalTo: id)
+        queries.append(query!)
+    }
+    
+    let query = PFQuery.orQueryWithSubqueries(queries)
+    query.findObjectsInBackgroundWithBlock { (result, error) -> Void in
+        if  let results = result {
+            complete(users: results as! [User], error: nil)
+        } else {
+            complete(users: [], error: error)
+        }
+    }
+}

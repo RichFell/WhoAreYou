@@ -8,8 +8,17 @@
 
 import UIKit
 
-class FriendsListViewController: UIViewController {
+class FriendsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+
+    var friends : [User] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,8 +28,23 @@ class FriendsListViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if User.currentUser() != nil {
-            //TODO: Request Friends From Facebook
+            facebookPullFriendData({ (friends, error) -> Void in
+                self.friends = friends
+            })
         }
     }
 
+    //MARK: UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return friends.count
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(FriendListTableViewCell.cellID()) as! FriendListTableViewCell
+        let friend = friends[indexPath.row]
+        cell.user = friend
+        return cell
+    }
+
+    //MARK: UITableViewDelegate
 }

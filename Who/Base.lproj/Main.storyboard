@@ -44,10 +44,10 @@
             </objects>
             <point key="canvasLocation" x="885" y="647"/>
         </scene>
-        <!--View Controller-->
+        <!--Friends List View Controller-->
         <scene sceneID="7Nu-Ng-p41">
             <objects>
-                <viewController id="Mp1-mD-b38" sceneMemberID="viewController">
+                <viewController id="Mp1-mD-b38" customClass="FriendsListViewController" customModule="Who" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ofW-M5-z9l"/>
                         <viewControllerLayoutGuide type="bottom" id="phH-fF-oW5"/>
@@ -60,7 +60,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="231" id="K6v-6k-eED" customClass="FriendListTableViewCell" customModule="Who" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FriendsCell" rowHeight="231" id="K6v-6k-eED" customClass="FriendListTableViewCell" customModule="Who" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="231"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="K6v-6k-eED" id="q6b-hO-U9w">
@@ -136,6 +136,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mp1-mD-b38" id="Maw-ca-TXd"/>
+                                    <outlet property="delegate" destination="Mp1-mD-b38" id="1h7-Z1-sNA"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,6 +151,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mov-tv-qX2"/>
+                    <connections>
+                        <outlet property="tableView" destination="joZ-eu-c93" id="2dP-fN-8wY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tYX-Qc-deJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

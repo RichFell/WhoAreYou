@@ -37,6 +37,25 @@ func facebookLogin(vc:UIViewController, complete:(outcome: Bool, error: NSError?
     }
 }
 
-private func graphRequestForUserInformation() {
+func facebookPullFriendData(complete:(friends:[User], error:NSError?)->Void) {
+    if  FBSDKAccessToken.currentAccessToken().hasGranted("user_friends") {
+        let request = FBSDKGraphRequest(graphPath: "/me/friends", parameters: ["fields": ""], HTTPMethod: "GET")
+        request.startWithCompletionHandler({ (requestConnection, result, error) -> Void in
+            if result != nil {
+                let res = result as! NSDictionary
+                print(res)
+                if let results = res["data"] as? [NSDictionary]{
+                    print(results)
+                    var ids : [String] = []
+                    for dict in results {
+                        ids.append(dict["id"] as! String)
+                    }
+                    parseUsersMatchingUserIDs(ids, complete: { (users, error) -> Void in
 
+                        complete(friends: users, error: error)
+                    })
+                }
+            }
+        })
+    }
 }

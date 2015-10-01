@@ -19,8 +19,14 @@ class User: PFUser {
         self.fbID = fbResultDict[ID_Key] as? String
         self.email = fbResultDict[Email_Key] as? String ?? ""
         self.password = FBSDKAccessToken.currentAccessToken().tokenString
-        let dict = fbResultDict[Locaiton_Key] as! NSDictionary
-        let homeDict = fbResultDict[Hometown_Key] as! NSDictionary
-        self.location = dict[Name_Key] as? String ?? homeDict[Name_Key] as? String ?? ""
+        guard let dict = fbResultDict[Locaiton_Key] as? NSDictionary else {
+            guard let adict = fbResultDict[Hometown_Key] as? NSDictionary else {
+                self.location = ""
+                return
+            }
+            self.location = adict[Name_Key] as? String
+            return
+        }
+        self.location = dict[Name_Key] as? String
     }
 }

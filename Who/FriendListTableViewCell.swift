@@ -23,4 +23,8 @@ class FriendListTableViewCell: UITableViewCell {
         }
     }
 
+    class func cellID()->String {
+        return "FriendsCell"
+    }
+
 }
