@@ -8,9 +8,15 @@
 
 import Foundation
 
-func loginNewUser(facebookResultDict:NSDictionary, complete:(finished:Bool, error:NSError?)->Void) {
+func parseSignUpNewUser(facebookResultDict:NSDictionary, complete:(finished:Bool, error:NSError?)->Void) {
     let user = User(fbResultDict: facebookResultDict)
     user.signUpInBackgroundWithBlock { (outcome, error) -> Void in
         complete(finished: outcome , error: error)
+    }
+}
+
+func parseLoginUser(userName:String, didLogin:(Bool)->Void) {
+    User.logInWithUsernameInBackground(userName, password: FBSDKAccessToken.currentAccessToken().tokenString) { (user, error) -> Void in
+        didLogin(user != nil ? true : false)
     }
 }
