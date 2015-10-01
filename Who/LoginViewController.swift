@@ -18,6 +18,8 @@ class LoginViewController: UIViewController {
         facebookLogin(self) { (token, error) -> Void in
             if error != nil {
                 showAlertWithTitle("Sorry there was an issue with your login", message: "Please verify you are connected to either wifi, or data, then try to log in again.", vc: self)
+            } else {
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
