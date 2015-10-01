@@ -43,9 +43,7 @@ func facebookPullFriendData(complete:(friends:[User], error:NSError?)->Void) {
         request.startWithCompletionHandler({ (requestConnection, result, error) -> Void in
             if result != nil {
                 let res = result as! NSDictionary
-                print(res)
                 if let results = res["data"] as? [NSDictionary]{
-                    print(results)
                     var ids : [String] = []
                     for dict in results {
                         ids.append(dict["id"] as! String)
