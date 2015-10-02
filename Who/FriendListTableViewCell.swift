@@ -15,11 +15,11 @@ class FriendListTableViewCell: UITableViewCell {
     @IBOutlet weak var hometownLabel: UILabel!
     @IBOutlet weak var averageRatingLabel: UILabel!
 
-    var user : User? {
+    var userInfo : UserInfo? {
         didSet{
-            profilePicView.profileID = user?.fbID
-            nameLabel?.text = user?.username
-            hometownLabel.text = user?.location
+            profilePicView.profileID = userInfo?.fbID
+            nameLabel?.text = userInfo?.name
+            hometownLabel.text = userInfo?.location
         }
     }
 

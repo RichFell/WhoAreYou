@@ -8,10 +8,15 @@
 
 import Foundation
 
-func parseSignUpNewUser(facebookResultDict:NSDictionary, complete:(finished:Bool, error:NSError?)->Void) {
-    let user = User(fbResultDict: facebookResultDict)
-    user.signUpInBackgroundWithBlock { (outcome, error) -> Void in
+func parseSignUpNewUser(newUser: User, complete:(finished:Bool, error:NSError?)->Void) {
+    newUser.signUpInBackgroundWithBlock { (outcome, error) -> Void in
         complete(finished: outcome , error: error)
+    }
+}
+
+func parseSaveObjectInBackground(object:PFObject, complete:(finished:Bool, error:NSError?)->Void){
+    object.saveInBackgroundWithBlock { (outcome, error) -> Void in
+        complete(finished: outcome, error: error)
     }
 }
 
@@ -21,11 +26,11 @@ func parseLoginUser(userName:String, didLogin:(Bool)->Void) {
     }
 }
 
-func parseUsersMatchingUserIDs(userIDs:[String], complete: (users: [User], error: NSError?)->Void) {
+func parseUsersMatchingUserIDs(fbIDs:[String], complete: (users: [UserInfo], error: NSError?)->Void) {
     var queries : [PFQuery] = []
 
-    for id in userIDs {
-        let query = User.query()
+    for id in fbIDs {
+        let query = UserInfo.query()
         query?.whereKey("fbID", equalTo: id)
         queries.append(query!)
     }
@@ -33,7 +38,7 @@ func parseUsersMatchingUserIDs(userIDs:[String], complete: (users: [User], error
     let query = PFQuery.orQueryWithSubqueries(queries)
     query.findObjectsInBackgroundWithBlock { (result, error) -> Void in
         if  let results = result {
-            complete(users: results as! [User], error: nil)
+            complete(users: results as! [UserInfo], error: nil)
         } else {
             complete(users: [], error: error)
         }
@@ -46,7 +51,6 @@ func parseSaveRating(rating:WYRating, withReason:String, complete:(Bool)->Void) 
         complete(outcome)
     }
 }
-
 
 func parseCheckIfRatedUser(user:User, complete:(Bool)->Void) {
 

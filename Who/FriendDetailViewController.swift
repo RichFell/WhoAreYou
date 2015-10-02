@@ -16,6 +16,8 @@ class FriendDetailViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
 
+    var friendInfo: UserInfo?
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var avgRatingLabel: UILabel!
@@ -23,9 +25,10 @@ class FriendDetailViewController: UIViewController, UITableViewDataSource, UITab
 
 
     //MARK: LifeCycle
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nameLabel.text = friendInfo?.name ?? ""
+        profilePicView.profileID = friendInfo?.fbID ?? ""
     }
 
     //MARK: UITableViewDataSource

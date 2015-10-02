@@ -12,19 +12,13 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var tableView: UITableView!
 
-    var friends : [User] = [] {
+    var friends : [UserInfo] = [] {
         didSet {
             tableView.reloadData()
         }
     }
 
     //MARK: LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if User.currentUser() != nil {
@@ -32,6 +26,16 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
                 self.friends = friends
             })
         }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let vc = segue.destinationViewController as? FriendDetailViewController else{
+            return
+        }
+        guard let indexPath = tableView.indexPathForSelectedRow else{
+            return
+        }
+        vc.friendInfo = friends[indexPath.row]
     }
 
     //MARK: UITableViewDataSource
@@ -42,7 +46,7 @@ class FriendsListViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(FriendListTableViewCell.cellID()) as! FriendListTableViewCell
         let friend = friends[indexPath.row]
-        cell.user = friend
+        cell.userInfo = friend
         return cell
     }
 

@@ -39,10 +39,77 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="B1d-wo-e5Z" kind="presentation" identifier="PhoneVerSegue" id="EJr-Mf-dEg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="885" y="647"/>
+        </scene>
+        <!--Phone Ver View Controller-->
+        <scene sceneID="CRl-vv-xzb">
+            <objects>
+                <viewController id="B1d-wo-e5Z" customClass="PhoneVerViewController" customModule="Who" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="csz-rW-bYv"/>
+                        <viewControllerLayoutGuide type="bottom" id="PZd-Yh-8QK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ut-wM-53e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="In order to match you with Reviews people might have already left, we need your mobile phone number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRN-eK-SU1">
+                                <rect key="frame" x="20" y="28" width="280" height="101"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="xmE-h9-TX8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone# here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lur-E8-ZPq">
+                                <rect key="frame" x="20" y="152" width="280" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PLh-JI-M2c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="B1d-wo-e5Z" id="046-s3-PQd"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yk2-N1-JTt">
+                                <rect key="frame" x="50" y="199" width="220" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="JXA-nS-nCn"/>
+                                    <constraint firstAttribute="height" constant="30" id="lu7-eW-Vay"/>
+                                </constraints>
+                                <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finishRegistration:" destination="B1d-wo-e5Z" eventType="touchUpInside" id="5DH-Qx-frm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Yk2-N1-JTt" firstAttribute="centerX" secondItem="9ut-wM-53e" secondAttribute="centerX" id="7eN-f6-8jO"/>
+                            <constraint firstItem="LRN-eK-SU1" firstAttribute="leading" secondItem="9ut-wM-53e" secondAttribute="leadingMargin" id="HWh-hE-Ep9"/>
+                            <constraint firstItem="Lur-E8-ZPq" firstAttribute="top" secondItem="LRN-eK-SU1" secondAttribute="bottom" constant="23" id="Mfm-zl-aAF"/>
+                            <constraint firstItem="LRN-eK-SU1" firstAttribute="top" secondItem="csz-rW-bYv" secondAttribute="bottom" constant="8" id="gIN-ji-twD"/>
+                            <constraint firstItem="Lur-E8-ZPq" firstAttribute="trailing" secondItem="9ut-wM-53e" secondAttribute="trailingMargin" id="lNf-pQ-FBN"/>
+                            <constraint firstItem="Lur-E8-ZPq" firstAttribute="leading" secondItem="9ut-wM-53e" secondAttribute="leadingMargin" id="rDk-9c-GJS"/>
+                            <constraint firstItem="Yk2-N1-JTt" firstAttribute="top" secondItem="Lur-E8-ZPq" secondAttribute="bottom" constant="17" id="vlx-ce-u0y"/>
+                            <constraint firstItem="LRN-eK-SU1" firstAttribute="trailing" secondItem="9ut-wM-53e" secondAttribute="trailingMargin" id="wjz-YH-JR5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="finishRegButton" destination="Yk2-N1-JTt" id="5PD-Uh-Gk5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kFe-me-sds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1376" y="649"/>
         </scene>
         <!--Friends List View Controller-->
         <scene sceneID="7Nu-Ng-p41">

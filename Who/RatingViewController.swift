@@ -15,8 +15,8 @@ class RatingViewController: UIViewController {
 
     var userToRate : User? {
         didSet {
-            newRating.rated = userToRate
-            newRating.rater = User.currentUser()
+//            newRating.rated = userToRate
+//            newRating.rater = User.currentUser()
         }
     }
     

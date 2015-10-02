@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId(ParseAppID, clientKey: ParseClientKey)
         User.registerSubclass()
         WYRating.registerSubclass()
+        UserInfo.registerSubclass()
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 
