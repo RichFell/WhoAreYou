@@ -39,3 +39,24 @@ func parseUsersMatchingUserIDs(userIDs:[String], complete: (users: [User], error
         }
     }
 }
+
+func parseSaveRating(rating:WYRating, withReason:String, complete:(Bool)->Void) {
+    rating.reason = withReason
+    rating.saveInBackgroundWithBlock { (outcome, error) -> Void in
+        complete(outcome)
+    }
+}
+
+
+func parseCheckIfRatedUser(user:User, complete:(Bool)->Void) {
+
+}
+
+
+
+
+
+
+
+
+
